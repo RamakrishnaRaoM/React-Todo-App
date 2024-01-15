@@ -27,7 +27,7 @@ function App() {
 
   return (
     <>
-    <TodoContext.Provider value={{TodoItems,setTodoItems}}>
+    <TodoContext.Provider value={{todoItems,setTodoItems}}>
       <center className="todo-container">
         <AppName />
         <AddTodo onNewItem={handleNewItem} />

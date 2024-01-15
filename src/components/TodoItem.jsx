@@ -2,32 +2,34 @@ import { useState } from "react";
 import TodoContext from "./TodoContext";
 import { useContext } from "react";
 
-function TodoItem({ todoName, todoDate, onDeleteClick }) {
+function TodoItem({ todoName, todoDate, onDeleteClick, onEdit}) {
   const [estate, setEstate] = useState(false);
-  const [todoN, setTodon] = useState();
+  const [editText, setEdit] = useState(todoName);
 
-  const { TodoItems, setTodoItems } = useContext(TodoContext);
-  const Change = (event) => {
-    setTodon(event.target.value);
-    TodoItems.map((item) => {
-      if (item.name == todoName) {
-        item.name = todoN;
-        item.id = todoN;
-      }
-    });
-  };
+  //const { TodoItems, setTodoItems } = useContext(TodoContext);
 
   return (
     <div className="container">
       <div className="row kg-row">
         {estate ? (
-          <input className="col-6" placeholder="edit todo" onChange={Change} />
+          <input
+            className="col-6"
+            value={editText}
+            type="text"
+            onChange={(e) => setEdit(e.target.value)}
+          />
         ) : (
           <div className="col-6">{todoName}</div>
         )}
         <div className="col-4">{todoDate}</div>
         <div className="col-2">
-          <button className="btn" onClick={() => setEstate(!estate)}>
+          <button
+            className="btn"
+            onClick={() => {
+              setEstate(!estate);
+              onEdit(editText);
+            }}
+          >
             {estate ? "save" : "Edit"}
           </button>
           <button
