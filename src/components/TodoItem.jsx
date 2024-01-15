@@ -24,7 +24,7 @@ function TodoItem({ todoName, todoDate, onDeleteClick, onEdit}) {
         <div className="col-4">{todoDate}</div>
         <div className="col-2">
           <button
-            className="btn"
+            className="btn btn-success edit"
             onClick={() => {
               setEstate(!estate);
               onEdit(editText);
